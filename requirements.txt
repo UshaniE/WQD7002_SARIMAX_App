@@ -1,17 +1,13 @@
 
-import streamlit as st
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import sklearn
+streamlit
+numpy
+pandas
+matplotlib.pyplot
+sklearn
 
-from datetime import datetime
-from datetime import timedelta
+datetime
 
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+sklearn.metrics 
+sklearn.preprocessing
 
-from sklearn.preprocessing import StandardScaler
-
-
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from statsmodels.tsa.statespace.sarimax import SARIMAXResults
+statsmodels.tsa.statespace.sarimax
