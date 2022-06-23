@@ -3,5 +3,5 @@ streamlit==1.10.0
 numpy==1.20.3
 pandas==1.3.4
 matplotlib==3.4.3
-sklearn==0.24.2
+sklearn==22.1.2
 statsmodels==0.12.2
