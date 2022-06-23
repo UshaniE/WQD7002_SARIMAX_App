@@ -19,7 +19,6 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 
 
-
 #st.title("FORECASTING SOLAR PHOTOVOLTAICS (PV) POWER GENERATION USING MACHINE LEARNING")
 st.header("Forecasting Solar Photovoltaics (PV) Power Generation Using Machine Learning")
 st.write("Forecasting Horizon : **7-day ahead**")
