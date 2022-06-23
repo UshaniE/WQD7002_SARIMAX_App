@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import sklearn
+import pickle
 
 from datetime import datetime
 from datetime import timedelta
