@@ -2,50 +2,23 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import scipy.stats as stats
 import matplotlib.pyplot as plt
 import sklearn
-
-import seaborn as sns
-from matplotlib import rcParams
 
 from datetime import datetime
 from datetime import timedelta
 
 # Import regression and error metrics modules
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-
-
-# Import plotly modules to view time series in a more interactive way
-import plotly.graph_objects as go
-import pandas as pd
 
 # Standard scaler for preprocessing
 from sklearn.preprocessing import StandardScaler
-
-# Importing time series split for cross validation 
-from sklearn.model_selection import TimeSeriesSplit
-
-plt.style.use('bmh')
-
-# special IPython command to prepare the notebook for matplotlib and other libraries
-#%matplotlib inline 
-
 
 # Load specific forecasting tools
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 
-from statsmodels.graphics.tsaplots import plot_acf,plot_pacf # for determining (p,q) orders
-from statsmodels.tsa.seasonal import seasonal_decompose      # for ETS Plots
-from pmdarima import auto_arima                              # for determining ARIMA orders
 
-# Ignore harmless warnings
-import warnings
-warnings.filterwarnings("ignore")
 
 #st.title("FORECASTING SOLAR PHOTOVOLTAICS (PV) POWER GENERATION USING MACHINE LEARNING")
 st.header("Forecasting Solar Photovoltaics (PV) Power Generation Using Machine Learning")
@@ -153,7 +126,7 @@ def forecast(startdate):
     axes.set_xlabel('Date')
     axes.set_ylabel('Power Generation in kW')
     axes.legend()
-    #axes.set_title('Observed and Forecasted Power Generation')  
+  
 
     st.subheader('Observed and Forecasted Power Generation')
 
@@ -162,12 +135,9 @@ def forecast(startdate):
     st.subheader('Model Performance Matrices')
 
     RMSE = round(np.sqrt(mean_squared_error(y_actual, pred2)),2)
-    #st.metric(label ="Root Mean Squared Error (RMSE)", value = %.2f' %RMSE)
     R2 = round(r2_score(y_actual, pred2),2)
-    #st.write('Variance Score (R2): %.2f' % R2 )
     MAE = round(mean_absolute_error(y_actual, pred2),2)
-    #st.write('Mean Absolute Error (MAE): %.2f' % MAE)
-    
+  
     col1,col2,col3 = st.columns(3)
     col1.metric('RMSE',RMSE)
     col2.metric('R2',R2)
@@ -191,7 +161,6 @@ X_train_lag, X_test_lag, y_train_lag, y_test_lag = train_test(dfcyc,
 scaler1 = StandardScaler()
 y_train_lag = pd.DataFrame(scaler1.fit_transform(y_train_lag.values.reshape(-1,1)), index = y_train_lag.index, 
                            columns = ['PowerAvg'])
-# y_test_lag = scaler1.transform(y_test_lag)
 
 
 loaded = SARIMAXResults.load('sarimax.pkl')
